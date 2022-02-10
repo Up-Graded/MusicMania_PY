@@ -87,7 +87,7 @@ def login():
 def leader():
     with open("leaderboard.json", "r") as f:
         leader = json.load(f)
-    print(leader)
+    print(leader['Leaderboard'])
 
 def complete():
     os.system('cls')
@@ -135,7 +135,7 @@ def game(username):
     while incomplete:
         os.system('cls')
         round += 1
-        score = round(songs, round)
+        score = gameRound(songs, round)
         if score == 3:
             total += 3
         elif score == 1:
@@ -145,10 +145,13 @@ def game(username):
     print('You got {} score!'.format(total))
     with open("leaderboard.json", "r") as f:
         leaders = json.load(f)
-    if score > leaders["Leaderboard"][5]["Score"]:
-        leaders["Leaderboard"][5]["Name"] = username
-        leaders["Leaderboars"][5]["Score"] = total
-        leaders = sorted(leaders, key = itemgetter("Score"), reverse = True)
+    print()
+    if total > leaders["Leaderboard"][4]["Score"]:
+        leaders["Leaderboard"][4]["Name"] = username
+        leaders["Leaderboard"][4]["Score"] = total
+        leaders = sorted(leaders["Leaderboard"], key = itemgetter("Score"), reverse = True)
+        with open("Leaderboard.json", "w") as f:
+            json.dump(leaders, f, indent = 4)
     
 
 
@@ -187,3 +190,4 @@ def gameRound(songs, round):
 
 
 complete()
+hi
