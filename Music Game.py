@@ -2,6 +2,7 @@ import os
 import json
 import random
 import time
+from operator import itemgetter
 
 def signup():
     with open('users.json', 'r') as f:
@@ -83,7 +84,10 @@ def login():
             os.system('cls')
     return username
         
-        
+def leader():
+    with open("leaderboard.json", "r") as f:
+        leader = json.load(f)
+    print(leader)
 
 def complete():
     os.system('cls')
@@ -111,7 +115,7 @@ def complete():
         choice = input('What do you want to do (game or lb)?  ')
         if choice.lower() == 'game':
             os.system('cls')
-            game()
+            game(username)
             choiceValid = True
         elif choice.lower() == 'lb':
             os.system('cls')
@@ -122,7 +126,7 @@ def complete():
             time.sleep(1)
             os.system('cls')
 
-def game():
+def game(username):
     with open("songs.json", "r") as f:
         songs = json.load(f)
     incomplete = True
@@ -139,6 +143,12 @@ def game():
         else:
             incomplete = False
     print('You got {} score!'.format(total))
+    with open("leaderboard.json", "r") as f:
+        leaders = json.load(f)
+    if score >= leaders["Leaderboard"][5]["Score"]:
+        leaders["Leaderboard"][5]["Name"] = username
+        leaders["Leaderboars"][5]["Score"] = total
+        leaders = sorted(leaders, key = itemgetter("Score"), reverse = True)
     
 
 
@@ -175,21 +185,5 @@ def gameRound(songs, round):
             os.system('cls')
     return score
 
-def game():
-    with open("songs.json", "r") as f:
-        songs = json.load(f)
-    incomplete = True
-    round = 0
-    total = 0
-    while incomplete:
-        round += 1
-        score = gameRound(songs, round)
-        if score == 3:
-            total += 3
-        elif score == 1:
-            total += 1
-        else:
-            incomplete = False
-    print(total)
 
 complete()
