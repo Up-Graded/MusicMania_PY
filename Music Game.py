@@ -119,7 +119,7 @@ def complete():
             choiceValid = True
         elif choice.lower() == 'lb':
             os.system('cls')
-            print('Ok, come back later.')
+            leader()
             choiceValid = True
         else:
             print('That is not a valid option.')
