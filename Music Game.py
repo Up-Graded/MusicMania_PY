@@ -145,7 +145,7 @@ def game(username):
     print('You got {} score!'.format(total))
     with open("leaderboard.json", "r") as f:
         leaders = json.load(f)
-    if score >= leaders["Leaderboard"][5]["Score"]:
+    if score > leaders["Leaderboard"][5]["Score"]:
         leaders["Leaderboard"][5]["Name"] = username
         leaders["Leaderboars"][5]["Score"] = total
         leaders = sorted(leaders, key = itemgetter("Score"), reverse = True)
