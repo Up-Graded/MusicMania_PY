@@ -87,7 +87,7 @@ def login():
 def leader():
     with open("leaderboard.json", "r") as f:
         leader = json.load(f)
-    print(leader['Leaderboard'])
+    print('#1 {} Score: {}\n#2 {} Score: {}\n#3 {} Score: {}\n#4 {} Score: {}\n #5 {} Score:'.format(leader["Leaderboard"][0]["Name"], leader["Leaderboard"][0]["Score"],leader["Leaderboard"][1]["Name"], leader["Leaderboard"][1]["Score"],leader["Leaderboard"][2]["Name"], leader["Leaderboard"][2]["Score"],leader["Leaderboard"][3]["Name"], leader["Leaderboard"][3]["Score"],leader["Leaderboard"][4]["Name"], leader["Leaderboard"][4]["Score"],))
 
 def complete():
     os.system('cls')
@@ -150,12 +150,13 @@ def game(username):
         leaders["Leaderboard"][4]["Name"] = username
         leaders["Leaderboard"][4]["Score"] = total
         leaders = sorted(leaders["Leaderboard"], key = itemgetter("Score"), reverse = True)
-        with open("Leaderboard.json", "w") as f:
+        with open("leaderboard.json", "w") as f:
             json.dump(leaders, f, indent = 4)
     
 
 
 def gameRound(songs, round):
+    os.system('cls')
     attempt = 1
     score = 0
     randomSong = songs['Songs'][random.randint(0, len(songs['Songs'])- 1)]
@@ -163,6 +164,7 @@ def gameRound(songs, round):
     author = randomSong['Author']
     title = randomSong['Title']
     lyricsArray = []
+    lyrics = lyrics.split(' ')
     for x in range(len(lyrics)):
         newString = ""
         newString += lyrics[x][0]
