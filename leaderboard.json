@@ -1,5 +1,4 @@
-{
-    "Leaderboard":[
+[
         {"Name": "Placeholder",
         "Score": 0},
         {"Name": "Placeholder",
@@ -10,5 +9,4 @@
         "Score": 0},
         {"Name": "Placeholder",
         "Score": 0}
-    ]
-}
+]
