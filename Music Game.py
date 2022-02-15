@@ -87,7 +87,7 @@ def login():
 def leader():
     with open("leaderboard.json", "r") as f:
         leader = json.load(f)
-    print('#1 {} Score: {}\n#2 {} Score: {}\n#3 {} Score: {}\n#4 {} Score: {}\n #5 {} Score:'.format(leader["Leaderboard"][0]["Name"], leader["Leaderboard"][0]["Score"],leader["Leaderboard"][1]["Name"], leader["Leaderboard"][1]["Score"],leader["Leaderboard"][2]["Name"], leader["Leaderboard"][2]["Score"],leader["Leaderboard"][3]["Name"], leader["Leaderboard"][3]["Score"],leader["Leaderboard"][4]["Name"], leader["Leaderboard"][4]["Score"],))
+    print('#1 {} Score: {}\n#2 {} Score: {}\n#3 {} Score: {}\n#4 {} Score: {}\n#5 {} Score: {}'.format(leader[0]["Name"], leader[0]["Score"],leader[1]["Name"], leader[1]["Score"],leader[2]["Name"], leader[2]["Score"],leader[3]["Name"], leader[3]["Score"],leader[4]["Name"], leader[4]["Score"]))
 
 def complete():
     os.system('cls')
@@ -146,10 +146,10 @@ def game(username):
     with open("leaderboard.json", "r") as f:
         leaders = json.load(f)
     print()
-    if total > leaders["Leaderboard"][4]["Score"]:
-        leaders["Leaderboard"][4]["Name"] = username
-        leaders["Leaderboard"][4]["Score"] = total
-        leaders = sorted(leaders["Leaderboard"], key = itemgetter("Score"), reverse = True)
+    if total > leaders[4]["Score"]:
+        leaders[4]["Name"] = username
+        leaders[4]["Score"] = total
+        leaders = sorted(leaders, key = itemgetter("Score"), reverse = True)
         with open("leaderboard.json", "w") as f:
             json.dump(leaders, f, indent = 4)
     
